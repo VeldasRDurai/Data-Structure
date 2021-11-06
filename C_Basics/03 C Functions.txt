@@ -1,0 +1,11 @@
+<return type> <function name> ( <parameter 1 type> <parameter 1> ...  ){
+    // function body
+
+    return value; 
+}
+
+storage class =>
+    automatic( auto ) => local variable
+    external( extern ) => global variable
+    register( register )
+    static( static )
