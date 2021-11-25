@@ -52,6 +52,18 @@ void pop( int* data, STACK* stack){
     free(deletedNode);
 }
 
+void deleteStack(STACK *stack){
+    STACK_NODE* temp;
+    if(stack){
+        while( stack->top!=NULL ){
+            temp = stack->top;
+            stack->top = stack->top->next;
+            free(temp);
+        }
+        free(stack);
+    }
+}
+
 void printStack( STACK* stack ){
     STACK_NODE* currentNode = stack->top;
     printf("\nElements of stack are : ");
@@ -66,17 +78,6 @@ int main(){
 
     STACK* stack = createStack();
 
-    int data;
-    // push(5,stack);
-    // push(4,stack);
-    // push(6,stack);
-    // push(1,stack);
-    // printStack(stack);
-    // pop(&data, stack);
-    // printStack(stack);
-
-    // printf("\nPOPED DATA : %d",data);
-
     int command, repeat = 1;
     printf("\nYOUR STACK IS READY...!");
     printf("\nENTER THE BELOW NUMBER TO PERFORM CORRESPONDING OPERATION.");
@@ -85,13 +86,11 @@ int main(){
         scanf("%d",&command);
         switch(command){
             case 1:
-                // int data;
                 printf("\nEnter the number to be pushed :");
                 scanf("%d",&data);
                 push(data,stack);
                 break;
             case 2:
-                // int data;
                 pop(&data,stack);
                 printf("\nPoped data : %d", data);
                 break;
@@ -100,7 +99,7 @@ int main(){
                 break;
             case 0:
                 printf("\nHappy ending");
-                free(stack);
+                deleteStack(stack);
                 repeat = 0;
                 break;
             default:
