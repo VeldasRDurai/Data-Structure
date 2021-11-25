@@ -11,7 +11,6 @@ typedef struct{
     STACK_NODE* top;
 } STACK;
 
-// CREATE STACK 
 STACK* createStack(){
     STACK* stack;
 
@@ -22,8 +21,6 @@ STACK* createStack(){
     }
     return stack;
 }
-
-// PUSH DATA TO STACK.
 void push( int data, STACK* stack ){
     printf("\npushing data to stack: %d", data);
     STACK_NODE* newNode = (STACK_NODE*) malloc(sizeof(STACK_NODE));
@@ -37,7 +34,6 @@ void push( int data, STACK* stack ){
         return;
     }
 }
-
 void pop( int* data, STACK* stack){
     printf("\nPoping data...");
     STACK_NODE* deletedNode;
@@ -51,7 +47,6 @@ void pop( int* data, STACK* stack){
     stack->count--;
     free(deletedNode);
 }
-
 void deleteStack(STACK *stack){
     STACK_NODE* temp;
     if(stack){
@@ -63,7 +58,6 @@ void deleteStack(STACK *stack){
         free(stack);
     }
 }
-
 void printStack( STACK* stack ){
     STACK_NODE* currentNode = stack->top;
     printf("\nElements of stack are : ");
@@ -73,7 +67,17 @@ void printStack( STACK* stack ){
         currentNode = currentNode->next;
     }
 }
-
+int stackTop(STACK* stack){
+    if( stack->count == 0 ) return NULL;
+    else return stack->top->value;
+}
+int isEmpty(STACK* stack){
+    if( stack->count == 0 ) return 1;
+    else return 0;
+}
+int stackCount(STACK* stack){
+    return stack->count;
+}
 int main(){
 
     STACK* stack = createStack();
