@@ -82,7 +82,7 @@ int main(){
 
     STACK* stack = createStack();
 
-    int command, repeat = 1;
+    int command, repeat = 1,data;
     printf("\nYOUR STACK IS READY...!");
     printf("\nENTER THE BELOW NUMBER TO PERFORM CORRESPONDING OPERATION.");
     while(repeat){
