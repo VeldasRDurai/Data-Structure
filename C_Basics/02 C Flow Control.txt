@@ -1,6 +1,0 @@
-if-else
-for loop 
-while loop
-break and continue
-switch case
-goto
