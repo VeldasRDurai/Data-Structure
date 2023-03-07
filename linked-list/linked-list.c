@@ -5,34 +5,12 @@ typedef struct node {
     struct node *next;
 } NODE;
 
-NODE* createNode();
-// INSERSION
-void insertAtBegining(int data, NODE* HEAD);
-void insertAtMiddle(int data, NODE* HEAD, int position);
-void insertAtEnd(int data, NODE* HEAD);
-// DELETION
-void deleteAtBegining(NODE* HEAD);
-void deleteAtMiddle(int data, NODE* HEAD, int position);
-void deleteAtEnd(int data, NODE* HEAD);
-void traversal(NODE* HEAD)
-// SEARCH
-NODE* nodeAtPostion(NODE* HEAD, int position);
-int search(NODE* HEAD, int data);
-// SORT
-
-int main() {
-    NODE* HEAD;
-    insertAtBegining(1,HEAD);
-    insertAtBegining(2,HEAD);
-    insertAtBegining(3,HEAD);
-    insertAtBegining(4,HEAD);
-    traversal(HEAD);
-}
+NODE* HEAD;
 
 NODE* createNode(){
     return (NODE*) malloc(sizeof(NODE));
 }
-NODE* nodeAtPostion(NODE* HEAD, int position){
+NODE* nodeAtPostion(int position){
     NODE* temp = HEAD;
     int currentPosition = 0;
     while( temp != NULL ){
@@ -43,39 +21,45 @@ NODE* nodeAtPostion(NODE* HEAD, int position){
     return NULL;
 }
 
-void insertAtBegining(int data, NODE* HEAD){
+void insertAtBegining(int data){
     NODE* newNode = createNode();
+    if(newNode==NULL) return;
+
     newNode->data = data;
     newNode->next = HEAD;
     HEAD = newNode
 }
-void insertAtMiddle(int data, NODE* HEAD, int position){
-    NODE* newNode = createNode();
-    newNode->data = data;
-    
+
+void insertAtMiddle(int data, int position){
     if( position==0 ){
         insertAtBegining(int data, NODE* HEAD);
         return;
     }
-
+    NODE* newNode = createNode();
+    if(newNode==NULL) return;
+    
+    newNode->data = data;
     NODE* prevNode = nodeAtPostion(position-1);
     if( prevNode==NULL ) return
 
     newNode->next  = prevNode->next;
     prevNode->next = newNode;
 }
-void insertAtEnd(int data, NODE* HEAD){
+void insertAtEnd(int data){
     NODE* newNode = createNode();
+    if(newNode==NULL) return;
     NODE* temp = HEAD;
     while( temp->next != NULL ){
         temp = temp->next;
     }
     temp->next = newNode;
-    newNode.data = data;
+    newNode->data = data;
 }
-void deleteAtBegining(NODE* HEAD){
+void deleteAtBegining(){
+    if(HEAD==NULL) return;
     NODE* temp = HEAD;
-    HEAD = HEAD->next;
+    if(HEAD->next != NULL)
+        HEAD = HEAD->next;
     free(temp);
 }
 void deleteAtMiddle(NODE* HEAD, int position){
@@ -109,8 +93,6 @@ void traversal(NODE* HEAD){
         temp = temp->next;
     }
 }
-
-
 int search(NODE* HEAD, int data){
     NODE* temp = HEAD;
     int currentPosition = 0;

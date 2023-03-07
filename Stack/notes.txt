@@ -1,0 +1,14 @@
+
+* A Stack is a linear abstract data structure.
+* Last In First Out
+* The stack data structure can be of two types:
+    1. Static stack is implemented using an array in C
+    2. Dynamic stack is implemented using a linked list in C.
+* Push and Pop are the two primary operations
+    Others being Peek, isEmpty, isFull, print
+* Applications :
+    * infix to postfix, infix to prefix, postfix to infix, and prefix to infix.
+    * Recursion: Call Stack
+    * Memory Management: Stack allocation
+    * Compilation: Syntax Parsing
+* The time complexity of all the operations of a Stack is O(1).
