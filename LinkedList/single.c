@@ -7,22 +7,8 @@ typedef struct node {
 
 NODE* HEAD;
 
-NODE* createNode(){
-    return (NODE*) malloc(sizeof(NODE));
-}
-NODE* nodeAtPostion(int position){
-    NODE* temp = HEAD;
-    int currentPosition = 0;
-    while( temp != NULL ){
-        if( currentPosition == position ) return temp;
-        temp = temp->next;
-        currentPosition++;
-    }
-    return NULL;
-}
-
 void insertAtBegining(int data){
-    NODE* newNode = createNode();
+    NODE* newNode = (NODE*) malloc(sizeof(NODE));
     if(newNode==NULL) return;
 
     newNode->data = data;
@@ -35,18 +21,21 @@ void insertAtMiddle(int data, int position){
         insertAtBegining(int data, NODE* HEAD);
         return;
     }
-    NODE* newNode = createNode();
+    NODE* newNode = (NODE*) malloc(sizeof(NODE));
     if(newNode==NULL) return;
     
     newNode->data = data;
-    NODE* prevNode = nodeAtPostion(position-1);
-    if( prevNode==NULL ) return
+    NODE* prevNode = HEAD;
+    for(int i=0; i<position-1;i++){
+        if(prevNode==NULL) return;
+        prevNode = prevNode->next;
+    }
 
     newNode->next  = prevNode->next;
     prevNode->next = newNode;
 }
 void insertAtEnd(int data){
-    NODE* newNode = createNode();
+    NODE* newNode = (NODE*) malloc(sizeof(NODE));
     if(newNode==NULL) return;
     NODE* temp = HEAD;
     while( temp->next != NULL ){
@@ -63,8 +52,11 @@ void deleteAtBegining(){
     free(temp);
 }
 void deleteAtMiddle(NODE* HEAD, int position){
-    NODE* prevNode = nodeAtPostion(HEAD,position-1);
-    if(prevNode==NULL) return;
+    NODE* prevNode = HEAD;
+    for(int i=0; i<position;i++){
+        if(prevNode==NULL) return;
+        prevNode = prevNode->next;
+    }
 
     NODE* temp = prevNode->next;
     prevNode->next = prevNode->next->next;
